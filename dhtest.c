@@ -38,6 +38,7 @@ u_char dhcp_packet_release[1518] = { 0 };
 
 u_char dhopt_buff[500] = { 0 };
 u_int32_t dhopt_size = { 0 };
+u_char aux_dhmac[ETHER_ADDR_LEN + 1];
 u_char dhmac[ETHER_ADDR_LEN] = { 0 };
 u_char dmac[ETHER_ADDR_LEN];
 
@@ -185,7 +186,7 @@ int main(int argc, char *argv[])
 		switch(get_cmd) {
 			case 'm':
 				{
-					u_char aux_dhmac[ETHER_ADDR_LEN + 1];
+					//u_char aux_dhmac[ETHER_ADDR_LEN + 1];
 
 					if(strlen(optarg) > 18) {
 						fprintf(stdout, "Invalid mac address\n");
@@ -494,6 +495,30 @@ int main(int argc, char *argv[])
 		unicast_ip_address = get_interface_address();
 	}
 
+int i0 =0;
+int i1 =0;
+int i2 =0;
+int i3 =0;
+int i4 =0;
+int i5 =0;
+for(i0=0; i0<9; i0++) {
+	 srand((unsigned) time(NULL));
+	 aux_dhmac[0] = rand()%100;
+for(i1=0; i1<9; i1++) {
+for(i2=0; i2<9; i2++) {
+for(i3=0; i3<9; i3++) {
+for(i4=0; i4<9; i4++) {
+for(i5=0; i5<9; i5++) {
+
+	
+	aux_dhmac[1] = i1;
+	aux_dhmac[2] = i2;
+	aux_dhmac[3] = i3;
+	aux_dhmac[4] = i4;
+	aux_dhmac[5] = i5;
+	memcpy(dhmac, aux_dhmac, sizeof(dhmac));
+
+
 	/* Sets a random DHCP xid */
 	set_rand_dhcp_xid(); 
 
@@ -706,7 +731,7 @@ int main(int argc, char *argv[])
 			}
 
 			/* Logs DHCP IP details to log file. This file is used for DHCP release */
-			log_dhinfo(); 
+			//log_dhinfo(); 
 			if(!nagios_flag && verbose) {
 				print_dhinfo(DHCP_MSGACK);
 			}
@@ -792,6 +817,9 @@ int main(int argc, char *argv[])
 					"\"error-msg\":\"Listen timout reached.\"}");
 		}
 	}
+
+}}}}}}
+
 	/* Clear the promiscuous mode */
 	clear_promisc();
 	/* Close the socket */
