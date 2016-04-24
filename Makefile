@@ -8,3 +8,6 @@ dhtest: dhtest.o functions.o
 
 clean:
 	rm -f dhtest functions.o dhtest.o
+	
+install:
+	cp dhtest /home/openwrt/openwrt/591wifi_feeds/packages/net/dhtest/files
