@@ -1,3 +1,4 @@
+
 /*
  * DHCP client simulation tool. For testing pursose only.
  * This program needs to be run with root privileges. 
@@ -495,23 +496,20 @@ int main(int argc, char *argv[])
 		unicast_ip_address = get_interface_address();
 	}
 
-int i0 =0;
-int i1 =0;
+int i0 =0x55;
+int i1 =0xaa;
 int i2 =0;
 int i3 =0;
 int i4 =0;
 int i5 =0;
-for(i0=0; i0<9; i0++) {
-	 srand((unsigned) time(NULL));
-	 aux_dhmac[0] = rand()%100;
-for(i1=0; i1<9; i1++) {
+ aux_dhmac[0] = i0;
+ aux_dhmac[1] = i1;
 for(i2=0; i2<9; i2++) {
 for(i3=0; i3<9; i3++) {
 for(i4=0; i4<9; i4++) {
 for(i5=0; i5<9; i5++) {
 
 	
-	aux_dhmac[1] = i1;
 	aux_dhmac[2] = i2;
 	aux_dhmac[3] = i3;
 	aux_dhmac[4] = i4;
@@ -652,6 +650,7 @@ for(i5=0; i5<9; i5++) {
 				print_dhinfo(DHCP_MSGOFFER);
 			}
 		}
+            break;
 	}
 	/* Reset the dhopt buffer to build DHCP request options  */
 	reset_dhopt_size();
@@ -755,6 +754,7 @@ for(i5=0; i5<9; i5++) {
 						dhmac[0], dhmac[1], dhmac[2], dhmac[3], dhmac[4], dhmac[5]); 
 			}
 		}
+            break;
 	}
 	/* If IP listen flag is enabled, Listen on obtained for ARP, ICMP protocols  */
 	if(!nagios_flag && ip_listen_flag) {
@@ -818,7 +818,7 @@ for(i5=0; i5<9; i5++) {
 		}
 	}
 
-}}}}}}
+}}}}
 
 	/* Clear the promiscuous mode */
 	clear_promisc();
